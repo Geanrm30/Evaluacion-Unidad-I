@@ -3,6 +3,7 @@ package caso1_banco;
 import java.util.Scanner;
 import caso1_banco.models.Cuenta;
 import caso1_banco.models.Cliente;
+import caso1_banco.models.Deposito;
 import caso1_banco.models.Retiro;
 
 public class MainBanco {
@@ -49,6 +50,7 @@ public class MainBanco {
         System.out.println("Saldo inicial: " + cuenta.consultarSaldo());
 
         Retiro retiro = new Retiro();
+        Deposito deposito = new Deposito();
 
         // ===== MENÚ =====
         int opcion;
@@ -75,9 +77,13 @@ public class MainBanco {
                     System.out.print("Ingrese el monto: ");
                     monto = sc.nextDouble();
 
-                    // TODO: implementar lógica en clase Deposito
-                    System.out.println("Monto ingresado: " + monto);
-                    System.out.println("Función depósito aún no disponible.");
+                    if (deposito.ejecutar(cuenta, monto)) {
+                        System.out.println("Depósito realizado correctamente.");
+                        System.out.println("Saldo actual: " + cuenta.consultarSaldo());
+                    } else {
+                        System.out.println("No se pudo realizar el depósito.");
+                        System.out.println("Verifique que el monto sea mayor a 0.");
+                    }
                     break;
 
                 case 3:
