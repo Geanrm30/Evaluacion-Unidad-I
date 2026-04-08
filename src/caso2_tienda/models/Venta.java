@@ -2,34 +2,32 @@ package caso2_tienda.models;
 
 public class Venta {
 
-    private float totalInventario;
-
-
     public Venta() {
-        this.totalInventario = 0;
     }
 
-// Procesar producto
-    public void procesarProducto(Producto producto) {
-
-        System.out.println("\n" + producto.mostrarProducto());
-
-        float monto = producto.calcularMonto();
-        System.out.println("Valor total: " + monto);
-
-        if (producto.disponible()) {
-            System.out.println("Disponible: Sí");
-        } else {
-            System.out.println("Disponible: No");
+    public boolean venderProducto(Producto producto, int cantidadVendida) {
+        if (cantidadVendida <= 0) {
+            return false;
         }
 
-        // Acumular total
-        totalInventario += monto;
+        if (cantidadVendida > producto.getCantidad()) {
+            return false;
+        }
+
+        producto.setCantidad(producto.getCantidad() - cantidadVendida);
+        return true;
     }
 
-    // Mostrar total final
-    public void mostrarTotalInventario() {
-        System.out.println("\n===== TOTAL INVENTARIO =====");
-        System.out.println("Total acumulado: " + totalInventario);
+    public float calcularTotal(Producto producto, int cantidadVendida) {
+        return producto.getPrecio() * cantidadVendida;
+    }
+
+    public String mostrarVenta(Producto producto, int cantidadVendida) {
+        return "===== VENTA =====" +
+                "\nProducto: " + producto.getNombre() +
+                "\nCódigo: " + producto.getCodigo() +
+                "\nCantidad vendida: " + cantidadVendida +
+                "\nTotal a pagar: " + calcularTotal(producto, cantidadVendida) +
+                "\nStock restante: " + producto.getCantidad();
     }
 }
