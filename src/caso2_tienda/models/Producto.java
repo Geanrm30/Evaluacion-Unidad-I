@@ -46,6 +46,22 @@ public class Producto {
         this.cantidad = cantidad;
     }
 
+    public String mostrarProducto() {
+        return "===== PRODUCTO =====" +
+                "\nCódigo: " + codigo +
+                "\nNombre: " + nombre +
+                "\nPrecio: " + precio +
+                "\nCantidad: " + cantidad;
+    }
+
+    public float calcularMonto() {
+        return precio * cantidad;
+    }
+
+    public boolean disponible() {
+        return cantidad > 0;
+    }
+
     @Override
     public String toString() {
         return "Producto{" +
