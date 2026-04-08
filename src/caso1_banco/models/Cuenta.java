@@ -4,6 +4,10 @@ public class Cuenta {
     private String numeroCuenta;
     private double saldo;
 
+    public double consultarSaldo() {
+        return saldo;
+    }
+
 
     public Cuenta(String numeroCuenta, double saldo) {
         this.numeroCuenta = numeroCuenta;
