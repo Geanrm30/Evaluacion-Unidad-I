@@ -1,4 +1,4 @@
-package caso1_banco;
+package caso1_banco.principal;
 
 import java.util.Scanner;
 import caso1_banco.models.Cuenta;
