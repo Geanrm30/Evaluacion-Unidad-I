@@ -3,19 +3,43 @@ package caso1_banco.models;
 public class Cuenta {
     private String numeroCuenta;
     private double saldo;
+    private Cliente cliente;
 
-    public double consultarSaldo() {
-        return saldo;
+    public Cuenta() {
     }
 
-
-    public Cuenta(String numeroCuenta, double saldo) {
+    public Cuenta(String numeroCuenta, double saldo, Cliente cliente) {
         this.numeroCuenta = numeroCuenta;
         this.saldo = saldo;
+        this.cliente = cliente;
+    }
+
+    public String getNumeroCuenta() {
+        return numeroCuenta;
+    }
+
+    public void setNumeroCuenta(String numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
+    }
+
+    public double getSaldo() {
+        return saldo;
     }
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public double consultarSaldo() {
+        return saldo;
     }
 
     @Override
@@ -23,6 +47,7 @@ public class Cuenta {
         return "Cuenta{" +
                 "numeroCuenta='" + numeroCuenta + '\'' +
                 ", saldo=" + saldo +
+                ", cliente=" + cliente +
                 '}';
     }
 }

@@ -2,6 +2,8 @@ package caso1_banco;
 
 import java.util.Scanner;
 import caso1_banco.models.Cuenta;
+import caso1_banco.models.Cliente;
+import caso1_banco.models.Retiro;
 
 public class MainBanco {
 
@@ -10,7 +12,26 @@ public class MainBanco {
         Scanner sc = new Scanner(System.in);
 
         // ===== CREACIÓN DE CUENTA =====
-        System.out.println("===== CREACIÓN DE CUENTA =====");
+        System.out.println("===== DATOS DEL CLIENTE =====");
+
+        System.out.print("Ingrese identificación: ");
+        String identificacion = sc.nextLine();
+
+        System.out.print("Ingrese nombres: ");
+        String nombres = sc.nextLine();
+
+        System.out.print("Ingrese apellidos: ");
+        String apellidos = sc.nextLine();
+
+        System.out.print("Ingrese teléfono: ");
+        String telefono = sc.nextLine();
+
+        System.out.print("Ingrese dirección: ");
+        String direccion = sc.nextLine();
+
+        Cliente cliente = new Cliente(identificacion, nombres, apellidos, telefono, direccion);
+
+        System.out.println("\n===== CREACIÓN DE CUENTA =====");
 
         System.out.print("Ingrese número de cuenta: ");
         String numeroCuenta = sc.nextLine();
@@ -18,10 +39,16 @@ public class MainBanco {
         System.out.print("Ingrese saldo inicial: ");
         double saldo = sc.nextDouble();
 
-        Cuenta cuenta = new Cuenta(numeroCuenta, saldo);
+        Cuenta cuenta = new Cuenta(numeroCuenta, saldo, cliente);
+
+        System.out.println("\nCliente registrado correctamente.");
+        System.out.println(cliente.mostrarCliente());
 
         System.out.println("\nCuenta creada correctamente.");
+        System.out.println("Número de cuenta: " + cuenta.getNumeroCuenta());
         System.out.println("Saldo inicial: " + cuenta.consultarSaldo());
+
+        Retiro retiro = new Retiro();
 
         // ===== MENÚ =====
         int opcion;
@@ -58,9 +85,13 @@ public class MainBanco {
                     System.out.print("Ingrese el monto: ");
                     monto = sc.nextDouble();
 
-                    // TODO: implementar lógica en clase Retiro
-                    System.out.println("Monto ingresado: " + monto);
-                    System.out.println("Función retiro aún no disponible.");
+                    if (retiro.ejecutar(cuenta, monto)) {
+                        System.out.println("Retiro realizado correctamente.");
+                        System.out.println("Saldo actual: " + cuenta.consultarSaldo());
+                    } else {
+                        System.out.println("No se pudo realizar el retiro.");
+                        System.out.println("Verifique que el monto sea mayor a 0 y que tenga saldo suficiente.");
+                    }
                     break;
 
                 case 4:
