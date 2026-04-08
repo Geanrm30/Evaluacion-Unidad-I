@@ -7,6 +7,9 @@ public class Producto {
     private float precio;
     private int cantidad;
 
+    public Producto() {
+    }
+
     public Producto(String codigo, String nombre, float precio, int cantidad) {
         this.codigo = codigo;
         this.nombre = nombre;
